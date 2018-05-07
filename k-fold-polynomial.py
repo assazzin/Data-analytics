@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 from sklearn.model_selection import KFold
+
 
 
 def import_data(stockName):
@@ -43,18 +45,23 @@ if __name__ == '__main__':
 		y_train, y_test = y[train_index], y[test_index]
 
 		# create and fit classifier
-		classifier = LinearRegression()
-		classifier.fit(x_train, y_train)
+		classifier = PolynomialFeatures(degree = 4)
+		X_poly = classifier.fit_transform(x_train)
+
+		lr = LinearRegression()
+		lr.fit(X_poly, y_train)
+		
+		classifier.fit(X_poly, y_train)
 
 		# store result from classification
-		predicted_y = classifier.predict(x_test)
+		predicted_y.extend(lr.predict(classifier.fit_transform(x_test)))
 
 		# store expected result for this specific fold
-		expected_y = y_test
+		expected_y.extend(y_test)
 
 		# save and print accuracy
 		accuracy += np.sqrt(metrics.mean_squared_error(expected_y, predicted_y))
 
 
 	#accuracy = metrics.accuracy_score(expected_y, predicted_y)
-print "Linear-regression accuracy with " + stockName + ": " , accuracy/10
+print "Polynomial-regression accuracy with " + stockName + ": " , accuracy/10
