@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('data.csv')
 df=df.drop(['DATE'], 1)
 
-sns.set(style="white")
+sns.set(style="white", font_scale=0.8)
 
 # Compute the correlation matrix
 corr = df.corr()
