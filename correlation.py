@@ -6,9 +6,25 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('data.csv')
 df.drop(['DATE'], 1)
 
-#output.to_csv('bigmoney.csv')
+# Plot 2 graps for correlation comparing
+'''
+stock1 = 'ADVANC'
+stock2 = 'DTAC'
 
-sns.set(style="darkgrid")
+fig = plt.figure()
+ax1 = fig.add_subplot(1, 1, 1)
+ax1.plot(df[stock1], 'blue')
+ax1.set_ylabel(stock1, color='blue')
+
+ax2 = ax1.twinx()
+ax2.plot(df[stock2], 'coral')
+ax2.set_ylabel(stock2, color='coral')
+
+plt.show()
+exit()
+'''
+
+sns.set(style="white")
 
 # Compute the correlation matrix
 corr = df.corr()
