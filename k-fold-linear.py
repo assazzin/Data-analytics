@@ -25,7 +25,7 @@ def import_data(stockName):
 
 if __name__ == '__main__':
 	# get training and testing sets
-	stockName = 'BTS'
+	stockName = 'ADVANC'
 	x, y = import_data(stockName)
 
 	# set to 10 folds

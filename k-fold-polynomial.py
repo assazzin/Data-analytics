@@ -27,7 +27,7 @@ def import_data(stockName):
 
 if __name__ == '__main__':
 	# get training and testing sets
-	stockName = 'BTS'
+	stockName = 'ADVANC'
 	x, y = import_data(stockName)
 
 	# set to 10 folds
@@ -45,7 +45,7 @@ if __name__ == '__main__':
 		y_train, y_test = y[train_index], y[test_index]
 
 		# create and fit classifier
-		classifier = PolynomialFeatures(degree = 4)
+		classifier = PolynomialFeatures(degree = 3)
 		X_poly = classifier.fit_transform(x_train)
 
 		lr = LinearRegression()
@@ -54,10 +54,10 @@ if __name__ == '__main__':
 		classifier.fit(X_poly, y_train)
 
 		# store result from classification
-		predicted_y.extend(lr.predict(classifier.fit_transform(x_test)))
+		predicted_y = lr.predict(classifier.fit_transform(x_test))
 
 		# store expected result for this specific fold
-		expected_y.extend(y_test)
+		expected_y = y_test
 
 		# save and print accuracy
 		accuracy += np.sqrt(metrics.mean_squared_error(expected_y, predicted_y))
