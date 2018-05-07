@@ -4,12 +4,12 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('data.csv')
-df.drop(['DATE'], 1)
+df=df.drop(['DATE'], 1)
 
 # Plot 2 graps for correlation comparing
 '''
-stock1 = 'ADVANC'
-stock2 = 'DTAC'
+stock1 = 'CPF'
+stock2 = 'TISCO'
 
 fig = plt.figure()
 ax1 = fig.add_subplot(1, 1, 1)
