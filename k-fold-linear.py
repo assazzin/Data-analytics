@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
@@ -9,6 +10,8 @@ def import_data(stockName):
 	# import total dataset
 	data = pd.read_csv('StocksData/' + stockName + '.csv')
 	data = data.drop(['DATE'], 1)
+	#data = data.drop(['NEXT_OPEN_PRICE'], 1)
+	data = data.drop(['NEXT_OPEN'], 1)
 	data = data.dropna()
 
 	# get a list of column names
@@ -17,15 +20,21 @@ def import_data(stockName):
 	# separate into independent and dependent variables
 	x = data[headers[:-1]]
 	y = data[headers[-1:]].values.ravel()
-	y[y == "UP"] = 1
-	y[y == "DRAW"] = 0
-	y[y == "DOWN"] = -1
+	#y[y == "UP"] = 1
+	#y[y == "DRAW"] = 0
+	#y[y == "DOWN"] = -1
 
 	return x, y
 
 if __name__ == '__main__':
+	if(len(sys.argv) < 2) :
+		print 'Usage: k-fold-linear.py <stock name>'
+		exit()
+	else :
+		stockName = sys.argv[1]
+		stockName = stockName.upper()
+
 	# get training and testing sets
-	stockName = 'ADVANC'
 	x, y = import_data(stockName)
 
 	# set to 10 folds
@@ -57,4 +66,4 @@ if __name__ == '__main__':
 
 
 	#accuracy = metrics.accuracy_score(expected_y, predicted_y)
-print "Linear-regression accuracy with " + stockName + ": " , accuracy/10
+print "RMSE of Linear-regression with " + stockName + ": " , accuracy/10

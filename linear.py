@@ -1,11 +1,18 @@
+import sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn import preprocessing, model_selection, svm
 
+if(len(sys.argv) < 2) :
+	print 'Usage: linear.py <stock name>'
+	exit()
+else :
+	stock = sys.argv[1]
+	stock = stock.upper()
+
 forecast_out = int(30)  # predicting 30 days into future
-stock = 'IVL'
 
 df = pd.read_csv('data.csv')[[stock]]
 
@@ -33,6 +40,7 @@ print("confidence: ", confidence)
 forecast_prediction = clf.predict(X_forecast)
 print(forecast_prediction)
 
+'''
 # Plot Scatter
 plt.title('Linear Regression')
 plt.scatter(forecast_expection, forecast_prediction)
@@ -54,3 +62,4 @@ plt.ylabel('Predicted price')
 plt.axis([forecast_min, forecast_max, forecast_min, forecast_max])
 plt.grid()
 plt.show()
+'''

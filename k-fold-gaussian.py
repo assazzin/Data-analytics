@@ -1,3 +1,4 @@
+import sys
 import pandas
 from sklearn.naive_bayes import GaussianNB
 from sklearn import metrics
@@ -8,6 +9,7 @@ def import_data(stockName):
 	# import total dataset
 	data = pandas.read_csv('StocksData/' + stockName + '.csv')
 	data = data.drop(['DATE'], 1)
+	data = data.drop(['NEXT_OPEN_PRICE'], 1)
 	data = data.dropna()
 
 	# get a list of column names
@@ -20,8 +22,14 @@ def import_data(stockName):
 	return x, y
 
 if __name__ == '__main__':
+	if(len(sys.argv) < 2) :
+		print 'Usage: k-fold-gaussian.py <stock name>'
+		exit()
+	else :
+		stockName = sys.argv[1]
+		stockName = stockName.upper()
+
 	# get training and testing sets
-	stockName = 'ADVANC'
 	x, y = import_data(stockName)
 
 	# set to 10 folds
@@ -49,4 +57,4 @@ if __name__ == '__main__':
 
 	# save and print accuracy
 	accuracy = metrics.accuracy_score(expected_y, predicted_y)
-print("GaussianNB accuracy with " + stockName + ": " + accuracy.__str__())
+print("GaussianNB accuracy with " + stockName + ": " + str(accuracy*100) + " %")
