@@ -1,12 +1,16 @@
 # Data-analytics  
   
 ## Stand-alone files:  
-graphcompare.py  
-heatmap.py  
-linear.py  
+```
+python graphCompare.py
+python heatmap.py
+python linear.py 
+```
   
 ## How to run:  
-perl run.pl <stockname>  
+```
+perl run.pl <stockname>
+```
   
 "run.pl" will execute following files:  
  - predict-gaussian.py  
