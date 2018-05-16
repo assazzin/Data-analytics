@@ -22,7 +22,7 @@ x = data[['OPEN', 'HIGH', 'LOW', 'CLOSE', 'VOL']][:len(data)-1]
 last_x = data[['OPEN', 'HIGH', 'LOW', 'CLOSE', 'VOL']][len(data)-1:]
 y = data['NEXT_OPEN'][:len(data)-1]
 
-x_train, x_test, y_train, y_test = train_test_split(x, y)
+x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=0)
 
 
 classifier = GaussianNB()

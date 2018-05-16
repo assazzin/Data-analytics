@@ -23,7 +23,7 @@ x = data[['OPEN', 'HIGH', 'LOW', 'CLOSE', 'VOL']][:len(data)-1]
 last_x = data[['OPEN', 'HIGH', 'LOW', 'CLOSE', 'VOL']][len(data)-1:]
 y = data['NEXT_OPEN_PRICE'][:len(data)-1]
 
-x_train, x_test, y_train, y_test = train_test_split(x, y)
+x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=0)
 
 classifier = PolynomialFeatures(degree = 3)
 X_poly = classifier.fit_transform(x_train)
