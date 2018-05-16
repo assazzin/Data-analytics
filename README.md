@@ -1,6 +1,22 @@
 # Data-analytics  
   
-Useful links:  
+## Stand-alone files:  
+graphcompare.py  
+heatmap.py  
+linear.py  
+  
+## How to run:  
+perl run.pl <stockname>  
+  
+"run.pl" will execute following files:  
+ - predict-gaussian.py  
+ - predict-linear.py  
+ - predict-polynomial.py  
+ - k-fold-gaussian.py  
+ - k-fold-linear.py  
+ - k-fold-polynomial.py  
+  
+## Useful links:  
 https://enlight.nyc/stock-market-prediction  
 https://github.com/kentmacdonald2/k-Folds-Cross-Validation-Example-Python  
 http://songleitech.blogspot.com/2017/07/stratifiedkfold-vs-normal-kfold.html  
